@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Testing || glithedGoose()</title>
+
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #ddd;
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hiddenLoader {display: none;}
+
+      canvas {
+        background-image: url("./bg.jpg");
+        background-position: ce nter;
+        background-size: cover;
+        border: 25px solid #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hiddenLoader">
+      <!-- <img src="./sprites.png" id="spriteSheet"> -->
+      <img src="./test-sprites.png" id="spriteSheet">
+      <img src="./titleScreen.png" id="titleScreen">
+    </div>
+
+    <canvas id="canvas" width="600" height="600" onclick="startGame()"></canvas>
+
+    <script src="../../js-projects/start.js" charset="utf-8"></script>
+    <script src="./createMap.js" charset="utf-8"></script>
+    <script src="./player.js" charset="utf-8"></script>
+    <script src="./main.js" charset="utf-8"></script>
+  </body>
+</html>

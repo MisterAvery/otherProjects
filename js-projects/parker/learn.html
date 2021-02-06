@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <canvas width="500" height="500" style="background: #e8e8e8;"></canvas>
+  
+  <script>
+    //comments
+    //this a comment the computer will ignore them
+  
+    
+    
+    //arithmatic
+    +//addition
+    -//subtraction
+    *//multiplication
+    //division: forward slash
+    %//modulus
+    ++//add one to variable value and reassign
+    --//subtract one from variable and reassign
+    
+    
+    
+    //variables
+    let variable; //decleration
+    variable = 5; //assignment
+    let variable2 = 'anUdderlySmartCow.com'//decleration and assignment
+    
+    variable = 'honk'; //reassignment
+    ctx.fillText(variable, 0, 0);//using it plugs the value in where ever you put it
+    
+    
+    
+    //datatypes
+    let array = [0, 'dtring'];
+    let string = 'this a string';
+    let number = 5;
+    let boolean = true;
+    
+    
+
+    //functions
+    function name(arg1, arg2, arg3, arg4) {
+      //runs whatever is here
+      let val = [];
+      
+      return val;//output of the function something. Generally goes into a variable of other function
+    }
+    
+    name(5, 'arg2', false, [0, 45, true, false, 'honk'])//function call
+    
+    let funct = function() {
+      //this is an anonymonus function
+      //still called the regular way
+    }
+    
+    function Constructor(arg1) {
+      this.x = arg1;//this keyword makes it a constructor function
+      this.y = 5;//somthing declared with (this) can be accesed ouside of the function
+      
+      this.move = function() {
+        //whatever I want it to do
+        //refered to as a method
+      }
+    }
+    
+    let thing = new Constructor(900);
+    thing.move();
+    
+    
+    
+    
+    //conditionals
+    if(STATEMENT) {
+      OUTPUT
+    }
+    
+    
+    ==//equal to
+    ===//equal to 0
+    >=//greater than or equal to
+    <=//less than or equal to
+    !=//not equal to
+    !==//not equal to 0
+    
+    
+    &&//and
+    ||//or
+    
+    if(STATEMENT1 && STATEMENT2) {
+      OUTPUT
+    }
+    
+    if(STATEMENT1 || STATEMENT2) {
+      OUTPUT
+    }
+  </script>
+</html>

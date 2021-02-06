@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>canvas {background: #454545}</style>
+  </head>
+  <body>
+    <canvas width="600" height="600"></canvas>
+    
+    <script src="./start.js"></script>
+    <script>
+      //vector test
+      // let vec1 = newVector(100, 100);
+      // let vec2 = newVector(200, 150);
+      
+      
+      
+      //shapes test
+      // rect(vec1.a, vec1.b, vec2.a, vec1.b, '#f0f', '#fff');
+      // circ(300, 300, 50, '#18d', '#f00');
+      ctx.lineWidth = 5;
+      // line(100, height/2, 400, height/2, '#d10');
+      // tri(430, 400, 330, 400, 380, 230, '#0fa9', '#000');
+      // tri(450, 280, 450, 370, 280, 325, '#0af9', '#000');
+      
+      
+      
+      //vector math test
+      // console.log(add(vec1, vec2));
+      // console.log(sub(vec1, vec2));
+      // console.log(mult(vec1, vec2));
+      // console.log(div(vec1, vec2));
+      
+      // console.log(findSum(vec1, vec2));
+      // console.log(vec1);
+      // console.log(findDif(vec1, vec2));
+      // console.log(vec1);
+      // console.log(findProd(vec1, vec2));
+      // console.log(vec1);
+      // console.log(findQuoc(vec1, vec2));
+      // console.log(vec1);
+      
+      
+      
+      //math formulas test
+      // console.log(dist(50, 50, 20, 20));
+      // console.log(mid(0, 0, 600, 600));
+      // console.log(random(0, 0.5, 1));
+      
+      
+      
+      //collision test
+      let x1 = width/2;
+      let y1 = height/2;
+      
+      let x2 = 550;
+      let y2 = y1;
+      
+      let x3 = width/2 + 100;
+      let y3 = height/2 - 100;
+      
+      let x4 = x3;
+      let y4 = 500;
+      
+      // rect(x1, y1, 100, 100, '#fff8');
+      // rect(x2, y2, 100, 100, '#3338');
+    
+      // console.log(`Colliding: ${rect2rect(x1, y1, x2, y2, 100, 100, 100, 100)}`);
+      
+      // circ(x1, y1, 100, '#fff8');
+      // circ(x2, y2, 50, '#3338');
+      
+      // console.log(`Colliding: ${circ2circ(x1, y1, x2, y2, 100, 50)}`);
+    
+      // rect(x1, y1, 100, 100, '#3338');
+      // circ(x2, y2, 50, '#fff8');
+      
+      // console.log(`Colliding: ${rect2circ(x1, y1, x2, y2, 100, 100, 50)}`);
+    
+      line(x1, y1, x2, y2, '#d10');
+      line(x3, y3, x4, y4, '#05d');
+      
+      console.log(`Colliding: ${line2line(x1, y1, x2, y2, x3, y3, x4, y4)}`);
+    </script>
+  </body>
+</html>

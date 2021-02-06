@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Local Weather | glitchedGoose()</title>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+  </head>
+  <body>
+    <div id="popup-bg">
+      <div id="popup-card">
+        <h1>Input Your Zipcode</h1>
+        
+        <input id="zip-input" type="text" placeholder="Input Your Zipcode"/>
+        <button onclick="zipButtonClick()">Go</button>
+      </div>
+    </div>
+    
+    <div id="content-wrapper">
+      <div class="left">
+        <h1>Your Weather,</h1>
+        <div id="weather-icon"></div>
+        <h2 id="weather-type">{weather}</h2>
+      </div>
+      <div class="right">
+        <h1 id="area">Weather For {City Name}</h1>
+        
+        <p id="one" class="weather-fact"><span>Temperature: </span>{Temperature}</p>
+        <p id="two" class="weather-fact"><span>Heat Index: </span>{Heat Index}</p>
+        <p id="three" class="weather-fact"><span>Low: </span>{Low}</p>
+        <p id="four" class="weather-fact"><span>High: </span>{High}</p>
+        <p id="five" class="weather-fact"><span>Hummidity: </span>{Hummidity}</p>
+      </div>
+    </div>
+    
+    <button id="newZip" onclick="togglePopup();">Enter A new Zipcode</button>
+    
+    <script charset="utf-8" src="./main.js"></script>
+  </body>
+</html>

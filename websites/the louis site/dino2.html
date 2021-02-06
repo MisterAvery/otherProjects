@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./louis.css" type="text/css">
+    <title>The Louis Site</title>
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Louis classic games</h1>
+      <h4>Made by an udderly smart cow</h4>
+    </div><br>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><a class="left a" href="./dino2.html">The dinosaur game</a></td>
+
+          <td><a class="a" href="./pong.html">Pong</a></td>
+
+          <td><a class="a" href="./galaga.html">Galaga</a></td>
+
+          <td><a class="a" href="./breakout.html">Breakout Brick</a></td>
+
+          <td><a class="a" href="./hippo.html">Hippo war</a></td>
+
+          <td><a class="a"  href="./thebetterlouissite.html">Home</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>These are the (mostly)classic games made by Louis. You may only play the <strong>hippo war</strong> if you are a <strong>hipo-lizard man</strong> that wears <strong>3 jackets</strong> and <strong>2 undershirts</strong> everyday.</p>
+    
+  
+    <h1>Dinosaur Game by Louis</h1>
+    <h3 id="display">0</h3>
+    <canvas id="Canvas" width="400" height="400"></canvas><br>
+    <button onclick="jump()">Jump (space)</button>
+    <script>
+      //vars
+      var canvas = document.getElementById("Canvas");
+      var ctx = canvas.getContext("2d");
+      var gameOver = false;
+      var difficulty = 5;
+      var score = 0;
+      var jumping = false;
+      var altitude = 300;
+      var falling = false;
+      var obstacles = {};
+      var distanceFromLastObstacle = 0;
+      var distanceToNextObstacle  = 150;
+      var count = 0;
+  
+      //stuff
+      ctx.beginPath();
+      ctx.moveTo(0,300);
+      ctx.lineTo(400,300);
+      ctx.stroke();
+      ctx.closePath();
+      function spawnEnemy() {
+        count += 1;
+        obstacles["wall" + String(count)] = {};
+        obstacles["wall" + String(count)]["x"] = 400;
+  
+      }
+      function onNewFrame() {
+        if (gameOver == false) {
+          ctx.clearRect(0,0,400,300);
+          ctx.beginPath();
+          ctx.moveTo(0,300);
+          ctx.lineTo(400,300);
+          ctx.stroke();
+          ctx.closePath();
+          ctx.beginPath();
+          ctx.rect(70,altitude - 30,30,30);
+          ctx.fill();
+          ctx.closePath();
+          
+          for (i in obstacles) {
+            ctx.beginPath();
+            ctx.rect(obstacles[i]["x"],250,20,50);
+            ctx.fill();
+            ctx.closePath();
+            if (obstacles[i]["x"] <= 100 && obstacles[i]["x"] > 50 && altitude > 250) {gameOver = true}
+            obstacles[i]["x"] -= difficulty;
+          }
+          for (i in obstacles["bird"]) {}
+          if (jumping) {altitude -= 10}
+          if (altitude <= 150) {jumping = false;falling = true;}
+          if (jumping == false && altitude < 300) {altitude += 10}
+          if (altitude == 300) {falling = false}
+          
+          score += 1;
+          document.getElementById("display").innerHTML = String(score);
+          distanceFromLastObstacle += 1;
+          if (distanceFromLastObstacle >= distanceToNextObstacle) {spawnEnemy();distanceFromLastObstacle = distanceToNextObstacle;distanceToNextObstacle = (Math.random() * 100 + 50) + distanceFromLastObstacle; score += 1}
+          if (score % 500 == 0) {difficulty += 1;}
+        }
+      }
+      //controls
+      function jump() {if (falling == false) {jumping = true}}
+  
+      document.addEventListener('keydown', function(event) {
+        if (event.code == 'Space') {
+          jump()}});
+  
+      setInterval(onNewFrame,20)
+    </script>
+  </body>
+</html>

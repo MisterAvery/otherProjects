@@ -1,0 +1,25 @@
+#myCanvas {background-color: #000;}
+
+#canvas {background-color: #0018;}
+
+canvas {border: solid black 1px !important}
+
+#link {font-size: 15px; text-align: center;}
+
+ /*<a>*/
+.a {color: #038; padding-left: 20px; padding-right: 20px;}
+
+.a:hover {color: #f00; text-decoration: none;}
+
+a {padding-left: 450px;}
+ /*<a>*/
+
+div {background: linear-gradient(0deg, #038, rgb(228, 228, 236));}
+
+h1 {font-size: 45px;}
+
+h4, .a {font-size: 25px;}
+
+p {font-size: 22px;}
+
+table {border: black solid 3px; border-radius: 40px; margin-left: 200px;}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Promises | glitchedGoose</title>
+  </head>
+  <body style="background: #e8e8e8;">
+    <script>
+      ///////////////////////////////////////////////////
+      ///////////Basic Example of a Promise/////////////
+      /////////////////////////////////////////////////
+    
+      // let cleanTheRoom = new Promise(
+      //   function(resolve, reject) {
+      //     //cleaning the room
+          
+      //     let isClean = false;
+      //     isClean ? resolve('clean') : reject('dirty');
+      //   }
+      // );
+      
+      // cleanTheRoom.then(
+      //   function(fromResolve) {
+      //     console.log('room is ' + fromResolve);
+      //   }
+      // ).catch(
+      //   function(fromResolve) {
+      //     console.log('room is ' + fromResolve);
+      //   }
+      // )
+      
+      ///////////////////////////////////////////////////
+      ///////////Chaning Promises Together//////////////
+      /////////////////////////////////////////////////
+      
+      let cleanRoom = function() {
+        return new Promise(
+          function(resolve, reject) {
+            resolve('Cleaned my Room');
+          }
+        );
+      };
+      
+      let removeGarbage = function(message) {
+        return new Promise(
+          function(resolve, reject) {
+            // console.log(message);
+            resolve('Finished Taking Out the Garbage');
+          }
+        );
+      };
+      
+      let getIcecream = function(message) {
+        return new Promise(
+          function(resolve, reject) {
+            // console.log(message);
+            resolve('Ate my Icecream');
+          }
+        );
+      };
+      
+      //chain them all together and wait for each
+      //one to be done before continuing
+      
+      // cleanRoom().then(
+      //   function(message) {
+      //     return removeGarbage(message);
+      //   }
+      // ).then(
+      //   function(message) {
+      //     return getIcecream(message);
+      //   }
+      // ).then(
+      //   function(message) {
+      //     console.log('Everything is Done!!');
+      //   }
+      // );
+      
+      
+      //wait for them all to be done regardless of order
+      
+      // Promise.all(
+      //   [cleanRoom(), removeGarbage(), getIcecream()]
+      // ).then(
+      //   function() {
+      //     console.log('Everything is Done!!');
+      //   }
+      // );
+      
+      
+      //wait for only one of the promises to
+      //finis before continuing
+      
+      // Promise.race(
+      //   [cleanRoom(), removeGarbage(), getIcecream()]
+      // ).then(
+      //   function(message) {
+      //     console.log(`I ${message} First`);
+      //   }
+      // )
+      
+      
+      
+      // let resolved = false;
+      
+      // (function() {
+      //   return new Promise(
+      //     function(resolve, reject) {
+      //       setTimeout(() => {resolve('Promise has Resolved');}, 3000);
+      //     }
+      //   );
+      // })().then(
+      //   function(message) {
+      //     resolved = true;
+      //     console.log(message);
+      //   }
+      // );
+      
+    </script>
+  </body>
+</html>

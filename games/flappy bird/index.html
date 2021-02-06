@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flappy Bird</title>
+    <style>
+      body {
+        background: #0088df;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-family: Sans-Serif;
+        overflow: hidden;
+      }
+      
+      .header {
+        width: 350px;
+        height: 200px;
+        background: #f5f6fa;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 10px;
+      }
+      
+      .header h1 {
+        font-size: 35px;
+      }
+      
+      .header h2 {
+        font-size: 20px;
+      }
+      
+      #canvas {
+        box-shadow: 6px 6px 18px 0 #232323;
+        display: block;
+      }
+      
+      #scoreCounter {
+        background: #f1f1f1;
+        padding: 0.4em 0.6em;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hiddenLoader" style="display: none;">
+      <img id="bird" src="./bird.png">
+      <img id="bg" src="./bg.png">
+    </section>
+    
+    <section class="header">
+      <h1>Flappy Bird</h1>
+      <h2>By: anUdderlySmartCow</h2>
+    </section>
+    
+    <section class="gameBox">
+      <p id="scoreCounter">Score: 0</p>
+      <canvas id="canvas" width="560" height="560"></canvas>
+    </section>
+    
+    <script src="./bird.js"></script>
+    <script src="./pipe.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

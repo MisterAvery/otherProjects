@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: white;
+      }
+
+      .menu {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+      }
+
+      h2 {
+        background: #00a8ff;
+        padding: 0.3em 1em;
+        font-size: 23px;
+        height: 40px;
+        line-height: 40px;
+      }
+
+      .item {
+        background: #353b48;
+        padding: 0.5em 0.9em;
+        font-size: 0px;
+        height: 0px;
+        line-height: 30px;
+        color: transparent;
+        transition: 0.6s;
+      }
+
+      .con:hover .item {
+        font-size: 18px;
+        height: 30px;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="menu">
+      <div class="con">
+        <h2>Profile</h2>
+        <div class="item">one</div>
+        <div class="item">two</div>
+        <div class="item">three</div>
+      </div>
+
+      <div class="con">
+        <h2>Settings</h2>
+        <div class="item">one</div>
+        <div class="item">two</div>
+        <div class="item">three</div>
+      </div>
+
+      <div class="con">
+        <h2>Logout</h2>
+      </div>
+    </div>
+  </body>
+</html>

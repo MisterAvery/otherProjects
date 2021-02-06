@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Slot Machine</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    <h1 id="moneyCount">You Have 500 Dollars</h1>
+    
+    <div id="machine">
+      <div class="slot">0</div>
+      <div class="slot">0</div>
+      <div class="slot">0</div>
+      <div class="spin" onclick="spin()">Spin</div>
+    </div>
+    
+    <h2 id="spinCount">You Have Spun 0 Times</h2>
+    <h2 id="results">Spin The Slots</h2>
+    
+    <script>
+      const slots = document.getElementsByClassName('slot');
+      const Mcount = document.getElementById('moneyCount');
+      const Scount = document.getElementById('spinCount');
+      const Rtracker = document.getElementById('results');
+      let money = 500;
+      let spins = 0;
+      let vals = [];
+      
+      for(let i = 0; i < 100; i ++) {
+        console.log(`hello from hippo ${i}`);
+      }
+      
+      function spin() {
+        if(money >= 10) {
+        //asigning new values
+          for(let slot in slots) {
+            vals.push(Math.round(Math.random()*9));
+            slots[slot].innerHTML = vals[slot];
+          }
+          
+        //win/loss detection
+          if(vals[0] == vals[1] || vals[0] == vals[2] || vals[1] == vals[2]) {
+            money += 20;
+            Rtracker.innerHTML = 'You Won 20 dollars!!';
+          } else if(vals[0] == vals[1] && vals[0] == vals[2] && vals[1] == vals[2]) {
+            money += 100000;
+            Rtracker.innerHTML = 'You Won The Jackpot of 100000 dollars!!';
+          } else {
+            Rtracker.innerHTML = 'You Lost';
+          }
+          
+        //changing the variables
+          vals = [];
+          money -= 10;
+          spins ++;
+          
+        //grabbing the DOM elements
+          Mcount.innerHTML = `You Have ${money} Dollars`;
+          Scount.innerHTML = `You Have Spun ${spins} Times`;
+        } else {
+          document.getElementById('machine').innerHTML = 'Oh noooo!!<br>You Went Bankrupt.';
+        }
+      }
+    </script>
+  </body>
+</html>

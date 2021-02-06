@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ghost Clicker</title>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        color: #f8f8ff;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      
+      body {
+        background-image: url(https://i.pinimg.com/originals/85/21/98/85219859e5edf9deb03a68b5f33d9d94.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      
+      h3 {
+        background: #0A0024;
+        padding: 5px 10px;
+      }
+      
+      h2 {
+        font-family: 'frijole';
+        letter-spacing: 4px;
+        font-size: 31px;
+        background: #0A0024;
+      }
+    
+      .con {
+        padding: 20px;
+        border: 5px double #EF8500;
+        border-radius: 3px;
+        margin: 8px;
+        text-align: center;
+        overflow: auto;
+      }
+      
+      .left {
+        float: left;
+        width: 43%;
+      }
+      
+      .right {
+        float: right;
+        width: 57%;
+      }
+      
+      .clicker-box {
+        height: 52vh;
+      }
+      
+      .clicker-box img {
+        width: 175px;
+        height: 175px;
+        border-radius: 100%;
+        opacity: 0.85;
+        margin: 10px;
+        cursor: pointer;
+      }
+      
+      .convert {
+        height: 43vh;
+      }
+      .convert-con {
+        width: 100%;
+      }
+      
+      .convert-btn {
+        display: inline-block;
+        margin: 10px 8px;
+        cursor: pointer;
+        transition: 200ms;
+        border: 2px solid #f8f8ff;
+      }
+      
+      .store {
+        height: 67vh;
+      }
+      
+      .store section {
+        display: inline-block;
+        width: 42%;
+        background: #DF4E3955;
+        padding: 20px;
+        margin: 10px;
+      }
+      
+      .storeLeft {
+        float: left;
+      }
+      
+      .storeRight {
+        float: right;
+      }
+      
+      .storeItem {
+        margin: 12px 0;
+        cursor: pointer;
+        padding: 1.4em 2.5em;
+      }
+      
+      .save {
+        height: 28vh
+      }
+      
+      .save button, #closeBtn {
+        border: 3px solid #f8f8ff;
+        outline: none;
+        cursor: pointer;
+        color: #DF4E39;
+        background: black;
+        padding: 0.5em 1em;
+        font-size: 18px;
+        font-weight: 700;
+        transition: 300ms;
+        margin: 20px 0;
+      }
+      
+      button:hover, .convert-btn:hover, #closeBtn:hover {
+        background: #E2DB95;
+        color: #EF8500;
+      }
+      
+      
+      #modalBg {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: #CF650055;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      #modal {
+        width: 50%;
+        height: 82vh;
+        background: #f8f8ff;
+        border-radius: 5%;
+        margin: 0 auto;
+        margin-top: 75px;
+        color: #0A0024;
+        text-align: center;
+      }
+      
+      #modal h2 {
+        margin: 10px auto;
+      }
+      
+      #saveOutputBox {
+        border: 3px solid #EF8500;
+        width: 85%;
+        margin: 30px auto;
+      }
+      
+      #savecodeInput {
+        border: 3px solid #EF8500;
+        margin: 10px auto;
+        font-size: 20px;
+        padding: 0.5em 1em;
+        background: #0A0024;
+        width: 60%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="left">
+      <div class="con clicker-box">
+        <h2 class="special">Ghost Clicker</h2>
+        <img onclick="ghostClicked()" id="clicker" src="data:image/png;base64,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">
+        <h2 id="ghostCount">You Have 0 Ghosts</h2>
+      </div>
+      
+      <div class="con convert">
+        <h2 class="special">Convert Gosts Into Plasma Here</h2>
+        <h3 class="convert-btn">Transition Rate: 10 Ghosts:1 Plasma</h3>
+        <div class="convert-con">
+          <h3 onclick="convert(10)" class="convert-btn">Convert 10</h3>
+          <h3 onclick="convert(100)" class="convert-btn">Convert 100</h3>
+          <h3 onclick="convert(1000)" class="convert-btn">Convert 1000</h3>
+          <h3 onclick="convert(10000)" class="convert-btn">Convert 10000</h3>
+        </div>
+      </div>
+    </div>
+      
+    <div class="right">
+      <div class="con store">
+        <h2 class="special">Store</h2>
+        <h2 id="plasmaCounter">You Have 0 Plasma</h2>
+        
+        <section class="storeLeft">
+          <h3 onclick="buyItem(10, 5)" id="oldNet" class="storeItem">An Old Net<br>Quantity: 0<br>Price: 0</h3>
+          <h3 onclick="buyItem(75, 15)" id="bigNet" class="storeItem">A Bigger Net<br>Quantity: 0<br>Price: 0</h3>
+          <h3 onclick="buyItem(150, 30)" id="biggestNet" class="storeItem">The Biggest Net<br>Quantity: 0<br>Price: 0</h3>
+          <h3 onclick="buyItem(300, 60)" id="ghostNet" class="storeItem">The Ghost Net<br>Quantity: 0<br>Price: 0</h3>
+        </section>
+
+        <section class="storeRight">
+          <h3 onclick="buyItem(600, 120)" id="ghostTrap" class="storeItem">Ghost Trap<br>Quantity: 0</h3>
+          <h3 onclick="buyItem(1200, 240)" id="ionCannon" class="storeItem">Ion Cannon<br>Quantity: 0</h3>
+          <h3 onclick="buyItem(2400, 480)" id="plasmaCannon" class="storeItem">Plasma Cannon<br>Quantity: 0</h3>
+          <h3 onclick="buyItem(4800, 960)" id="ghostBuster" class="storeItem">The Ghost Busters<br>Quantity: 0</h3>
+        </section>
+      </div>
+
+      <div class="con save">
+        <h2 class="special">Save Your Game</h2>
+        <button onclick="getSave()">Get Your Save Code Here</button>
+      </div>
+    </div>
+    
+    <div id="modalBg">
+      <div id="modal">
+        <h2>Before You Go Get Your Save Code</h2>
+        <h2 id="saveOutputBox"></h2>
+        <h2>Copy And Paste It Somewhere Safe</h2>
+        
+        <h2>Already Have One?<br>Paste It Here</h2>
+        <textarea id="savecodeInput" rows="1" placeholder="Paste Your Code Here"></textarea><br>
+        
+        <button onclick="closeModal()" id="closeBtn">Click To Close</button>
+      </div>
+    </div>
+    
+    <script src="main.js"></script>
+  </body>
+</html>

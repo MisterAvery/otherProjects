@@ -1,0 +1,86 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body {
+	background: dodgerblue;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chat {
+	background: #fff;
+	width: 60%;
+	height: 615px;
+	padding: 14px 14px 48px;
+	border-radius: 6px;
+}
+
+.messages {
+	height: 80%;
+	border-radius: 6px;
+	border: 2px solid #aaa;
+	margin-bottom: 8px;
+	padding: 8px;
+	overflow: auto;
+}
+
+.messages p {
+	width: 51%;
+	border-radius: 6px;
+	margin-bottom: 8px;
+	padding: 10px 14px;
+}
+
+.mine {
+  float: right;
+  background: dodgerblue;
+  color: #fff;
+}
+
+.other {
+  float: left;
+  background: #ccc;
+}
+
+.info {
+	padding: 0 5px 5px;
+	border-radius: 6px;
+	border: 2px solid #aaa;
+}
+
+.info input {
+	background: dodgerblue;
+	color: #fff;
+	padding: 8px;
+	margin: 5px 0;
+	display: block;
+	font-size: 18px;
+	width: 100%;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+}
+
+.info input::placeholder {
+	color: #fff;
+	font-weight: 700;
+}
+
+.info .send {
+	display: block;
+	background: #fa1;
+	width: 22%;
+	border: none;
+	margin: 0 auto;
+	font-size: 16px;
+	padding: 10px;
+	outline: none;
+	cursor: pointer;
+}

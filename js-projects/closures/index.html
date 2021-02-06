@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Closures | glitchedGoose()</title>
+  </head>
+  <body style="background: #e8e8e8">
+    <script>
+    
+      // let f;
+      
+      // if(true) {
+      //   let i = 1;
+        
+      //   f = () => {
+      //     //the variable "i" is stored in this
+      //     //function's block scope.
+      //     console.log(i);
+      //   };
+      // }
+      
+      // // console.dir(f);
+      
+      // //notice how i is still printed even though
+      // //the function is called in a different scope.
+      // //this is a closure. I am getting closure on the
+      // //"i" variable, makking it available to me.
+      // f();
+      
+      
+      //closures in a function
+      let f = () => {
+        let i = 1; //I am only getting closure on i.
+        let j = 2;
+        return () => {
+          console.log(i);//i is the only variable I
+          //am using, giving me closure on it.
+        };
+      }
+      
+      f()();
+    
+      
+      //closures in a loop
+      //creates all functions and then runs them
+      //simultaniuslty once the loop is done
+      // for(let i = 0; i < 3; i++) {
+      //   setTimeout(() => {
+      //     console.log(i);
+      //   }, 1000);
+      // }
+      
+      // console.log('this is the line after the loop');
+      
+      
+      //closures in a loop with var
+      //resets the value of i. i
+      //has to be equal to three for
+      //the loop to relize it's finished
+      // for(var i = 0; i < 3; i++) {
+      //   ((i) => {
+      //     setTimeout(() => {
+      //       console.log(i);
+      //     }, 1000);
+      //   })(i);
+      // }
+      
+      // console.log('this is the line after the loop');
+      
+    </script>
+  </body>
+</html>

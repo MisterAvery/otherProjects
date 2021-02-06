@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<body></body>
+<canvas id = "canvas" width = "400" height = "400"></canvas>
+
+<script>
+var mooo = document.getElementById("canvas");
+var ctx = mooo.getContext("2d");
+var x = 75;
+var xspeed = 10;
+var y = 50;
+var yspeed = 4;
+
+function animate(){
+ctx.clearRect(0,0,400,400)
+ctx.beginPath()
+ctx.rect(x,y,50,50)
+ctx.fill()
+ctx.closePath()
+
+x += xspeed
+y += yspeed
+
+if (x >= 350 || x <= 0) {xspeed *= -1}
+if (y >= 350 || y <= 0) {yspeed *= -1}
+};
+
+setInterval(animate, 20)
+</script>
+
+<style>
+body {background-color: blue}
+
+canvas {background-color: white
+</style>
+</html>

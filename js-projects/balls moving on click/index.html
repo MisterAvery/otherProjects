@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Balls</title>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        width: 100%;
+        height: 100vh;
+        background: #58f;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      
+      .colors {
+        width: 125px;
+      }
+      
+      .add {
+        display: block;
+        padding: 0.7em 0;
+        margin: 7px 0;
+        width: 100%;
+        border: none;
+        font-size: 17px;
+      }
+      
+      canvas {
+        display: block;
+        background: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="colors">
+      <button class="add" onClick="balls.push(new ball('#0f08'));">Add Green</button>
+      <button class="add" onClick="balls.push(new ball('#00f8'));">Add Blue</button>
+      <button class="add" onClick="balls.push(new ball('#f008'));">Add Red</button>
+      <button class="add" onClick="balls.push(new ball('yellow'));">Add Yellow</button>
+    </div>
+    
+    <canvas class="canvas" width="800" height="600"></canvas>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

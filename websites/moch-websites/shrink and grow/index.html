@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expand On Click</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      body {
+        background: #f2f2f2;
+      }
+
+      .box {
+        width: 50%;
+        max-width: 440px;
+        margin: 10px auto;
+        padding: 35px;
+        box-shadow: 0 0 15px 0 #b0b0c8;
+        text-align: center;
+        background: white;
+      }
+
+      .box p {
+        margin: 15px 0;
+        font-size: 18px;
+        overflow: hidden;
+        height: 105px;
+      }
+
+      #sizeChanger {
+        width: 40%;
+        margin: 0 auto;
+        padding: 15px 7px;
+        border-radius: 50px;
+        background: #2897ffbf;
+        font-size: 19px;
+        color: #ddd;
+        transition: all 200ms ease-out;
+      }
+
+      #sizeChanger:hover {
+        color: white;
+        background: #0372dbff;
+        transform: scale(1.02);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1 class="header">Click To Expand</h1>
+      <p id="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, repellendus accusantium? Eos doloribus quasi fugiat quas necessitatibus laborum voluptates minus sunt molestiae temporibus. Et nam explicabo dolorem esse laborum similique voluptatum officiis sit ducimus iste aperiam quaerat dignissimos unde ullam repellat possimus saepe adipisci, labore exercitationem non praesentium neque, quidem sed mollitia. Facilis aliquid atque exercitationem blanditiis nulla, odio obcaecati, doloribus corporis esse distinctio nihil deserunt nam saepe pariatur vitae impedit aut provident? Quas, aspernatur ipsum nobis magnam vero voluptatum architecto molestias maiores velit. Libero provident magni officia, facilis officiis accusamus nemo architecto error alias! Hic atque minus fugiat voluptas.</p>
+      <div id="sizeChanger">Click Me</div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

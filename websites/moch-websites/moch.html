@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #0984e3;
+        font-family: 'Montserrat', Arial, sans-serif;
+      }
+
+      header {
+        height: 75px;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 3px solid white;
+        position: fixed;
+        color: white;
+        padding: 0 2rem;
+        line-height: 75px; 
+        z-index: 20;
+        background: #0984e3de;
+      }
+
+      header h2 {
+        float: left;
+        font-size: 32px;
+        letter-spacing: 1px;
+        margin-right: 50px;
+      }
+      header ul {
+        margin: 0 auto;
+      }
+
+      header ul a {
+        text-decoration: none;
+        font-size: 22px;
+        color: #dfe6e9;
+        background: #636e72cc;
+        padding: 0.5em 1.2em;
+        margin: 0 3px;
+        transition: 0.5s;
+      }
+
+      header ul a:hover {
+        border-radius: 40px;
+        background: #000a;
+        color: white;
+      }
+
+      main {
+        position: relative;
+        top: 100px;
+        width: 87%;
+        margin: 0 auto 100px;
+        background: #f9feff;
+        padding: 1.5rem;
+      }
+
+      main .first-letter {
+        font-size: 35px;
+        letter-spacing: 3px
+      }
+
+      main p {
+        font-size: 19px;
+      }
+
+      @media only screen and (max-width: 760px) {
+        header {
+          height: 150px;
+          text-align: center;
+        }
+
+        header h2 {
+          float: none;
+          font-size: 40px;
+          margin: 0;
+        }
+
+        header ul a {
+          font-size: 18.5px;
+        }
+
+        main {
+          width: 87%;
+          padding: 0.8rem;
+          top: 175px;
+        }
+      }
+
+      @media only screen and (max-width: 488px) {
+        header .trigger {
+          display: block;
+          width: 100%;
+          height: 60px;
+          background: #333b;
+        }
+
+        header .trigger:hover ul a, header .trigger ul a:hover {
+          visibility: visible;
+        }
+
+        header .trigger ul {
+          visibility: hidden;
+        }
+        
+        header .trigger ul a {
+          font-size: 22px;
+          height: 22px;
+          display: block;
+          line-height: 55px;
+        }
+
+        header .trigger ul a:hover {
+          background: #222;
+          border-radius: 25px;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h2>DarkCode</h2>
+      <div class="trigger">
+        <ul>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+        <p><span class="first-letter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus luctus accumsan tortor posuere ac ut consequat. Risus in hendrerit gravida rutrum.</p>
+        <p><span class="first-letter">V</span>iverra tellus in hac habitasse platea dictumst vestibulum. Ac odio tempor orci dapibus. Sem fringilla ut morbi tincidunt augue interdum velit. Sed enim ut sem viverra aliquet. Cursus turpis massa tincidunt dui</p><br><br>
+      </main>
+  </body>
+</html>

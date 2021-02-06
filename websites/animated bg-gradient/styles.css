@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.body {
+  background: linear-gradient(-90deg, #ffa502cc 0% 14%, #025CFFcc 43% 57%, #ffa502cc 86% 100%);
+  width: 200%;
+  min-height: 100vh;
+  margin-left: 0;
+  animation: 5s ease 0s infinite go;
+}
+
+@keyframes go {
+  0%, 100% {
+    margin-left: 0;
+  }
+  
+  50% {
+    margin-left: -100%;
+  }
+}

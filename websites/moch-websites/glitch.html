@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1e272e;
+        font-family: sans-serif;
+      }
+      
+      h1 {
+        position: absolute;
+        color: white;
+        font-size: 70px;
+        min-width: 436px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        border: 0.07em solid #f93f34;
+        text-align: center;
+        letter-spacing: 2px;
+      }
+
+      h1::before, h1::after {
+        content: 'Glitch Effect';
+        position: absolute;
+        display: block;
+        min-width: 381px;
+      }
+
+      h1::before {
+        color: #4bcffa;
+        animation: 1.35s glitch1 linear infinite;
+        z-index: -9;
+      }
+
+      h1::after {
+        color: #f93f34;
+        animation: 1.9s glitch2 linear infinite;
+        z-index: -10;
+      }
+
+      @keyframes glitch1 {
+        3% {
+          top: -0.11em;
+          left: -0.09em;
+        }
+
+        7% {
+          top: 0em;
+          left: 0em;
+        }
+      }
+
+      @keyframes glitch2 {
+        63% {
+          top: 0.15em;
+        }
+
+        68%, 0%, 62% {
+          top: 0em;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Glitch Effect</h1>
+  </body>
+</html>

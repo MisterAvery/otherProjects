@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fractals</title>
+	
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		body {
+			overflow: hidden;
+			min-height: 100vh;
+			background: hsl(210, 100%, 68%);
+		}
+		
+		canvas {
+			display: block;
+			background: hsl(200, 80%, 75%);
+			margin: 0 auto;
+		}
+		
+		input {
+			display: block;
+			width: 220px;
+			margin: 10px auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="800" height="600"></canvas>
+	<input type="range" value="10" min="2" max="10" step="1" class="rows" onchange="change()">
+	
+	<script src="../start.js"></script>
+	<script src="./main.js"></script>
+</body>
+</html>

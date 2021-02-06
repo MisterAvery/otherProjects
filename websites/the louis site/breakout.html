@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./louis.css" type="text/css">
+    <title>The Louis Site</title>
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Louis classic games</h1>
+      <h4>Made by an udderly smart cow</h4>
+    </div><br>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><a class="left a" href="./dino2.html">The dinosaur game</a></td>
+
+          <td><a class="a" href="./pong.html">Pong</a></td>
+
+          <td><a class="a" href="./galaga.html">Galaga</a></td>
+
+          <td><a class="a" href="./breakout.html">Breakout Brick</a></td>
+
+          <td><a class="a" href="./hippo.html">Hippo war</a></td>
+
+          <td><a class="a"  href="./thebetterlouissite.html">Home</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>These are the (mostly)classic games made by Louis. You may only play the <strong>hippo war</strong> if you are a <strong>hipo-lizard man</strong> that wears <strong>3 jackets</strong> and <strong>2 undershirts</strong> everyday.</p>
+    
+    <h1>Breakout Brick by Louis</h1>
+    <h3 id="points">Points: </h3>
+    <canvas id="Canvas" width="400" height="400"></canvas><br>
+    <button onclick="left()">Left (A)</button>
+    <button onclick="right()">Right (D)</button>
+    <script>
+      //Vars
+      var canvas = document.getElementById("Canvas");
+      var ctx = canvas.getContext("2d");
+      var ballx = 300;
+      var bally = 200;
+      var run = 5;
+      var rise = -5;
+      var platformx = 200;
+      var points = 0;
+      var bricks = {};
+      var count = 0;
+      var xcount = 0;
+      var ycount = 1;
+      var brickAmount = 15;
+      var gameOver = false
+      while (!(count == brickAmount)) {
+        count += 1;
+        xcount += 1;
+        if (xcount == 6) {xcount = 1; ycount += 1}
+        bricks["brick" + String(count)] = {};
+        bricks["brick" + String(count)]["x"] = xcount * 80 - 80;
+        bricks["brick" + String(count)]["y"] = ycount * 20 - 20;
+        bricks["brick" + String(count)]["alive"] = true;
+      }
+
+      //Models
+      function ball(x,y,size,filled) {
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI*2);
+        if (filled) {ctx.fillStyle = "#000000"; ctx.fill();}
+        else {ctx.strokeStyle = "#000000"; ctx.stroke();}
+        ctx.closePath();
+      }
+
+      function onNewFrame() {
+        if (gameOver == false) {
+          while (!(count == brickAmount)) {
+            count += 1;
+            xcount += 1;
+            if (xcount == 6) {xcount = 1; ycount += 1}
+            bricks["brick" + String(count)] = {};
+            bricks["brick" + String(count)]["x"] = xcount * 80 - 80;
+            bricks["brick" + String(count)]["y"] = ycount * 20 - 20;
+            bricks["brick" + String(count)]["alive"] = true;
+          }
+          ctx.clearRect(0,0,400,400);
+          ball(ballx,bally,10,true);
+          ctx.beginPath();
+          ctx.rect(platformx - 50,350,100,20);ctx.rect
+          ctx.fillStyle = "#000000";
+          ctx.fill();
+          ctx.closePath();
+          for (i in bricks) {
+            if (bricks[i]["alive"]) {
+              ctx.beginPath();
+              ctx.rect(bricks[i]["x"],bricks[i]["y"],80,20);
+              ctx.fillStyle = "#000000";
+              ctx.fill()
+              ctx.closePath();
+              if (bally > bricks[i]["y"] && bally < bricks[i]["y"] + 20 && (ballx >= bricks[i]["x"] - 5 && ballx <= bricks[i]["x"] - 5)) {run *= -1; bricks[i]["alive"] = false;points += 1000}
+              if (ballx > bricks[i]["x"] && ballx < bricks[i]["x"] + 80 && bally <= bricks[i]["y"] + 20) {rise *= -1; bricks[i]["alive"] = false;points += 1000}
+            }
+          }
+          for (i in bricks) {if (points % 15000 == 0) {bricks[i]["alive"] = true;/*if (brickAmount < 30) {brickAmount += 5}*/}}
+          ballx += run;
+          bally += rise;
+          if (ballx > 390 || ballx < 20) {run *= -1}
+          if (bally > 390) {gameOver = true;}
+          if (bally < 10) {rise *= -1}
+          if (bally > 340 && bally < 360 && ballx > platformx - 50 && ballx < platformx + 50) {rise *= -1}
+          document.getElementById("points").innerHTML = "Points: " + String(points);
+        }
+      }
+
+      //Controls
+      function left() {platformx -= 50}
+      function right() {platformx += 50}
+
+      document.addEventListener('keydown', function(event) {
+        if (event.code == 'KeyA') {
+          left()}});
+      document.addEventListener('keydown', function(event) {
+        if (event.code == 'KeyD') {
+          right()}});
+
+      setInterval(onNewFrame,20);
+    </script>
+  </body>
+</html>

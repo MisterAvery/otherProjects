@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./louis.css" type="text/css">
+    <title>The Louis Site</title>
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Louis classic games</h1>
+      <h4>Made by an udderly smart cow</h4>
+    </div><br>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><a class="left a" href="./dino2.html">The dinosaur game</a></td>
+
+          <td><a class="a" href="./pong.html">Pong</a></td>
+
+          <td><a class="a" href="./galaga.html">Galaga</a></td>
+
+          <td><a class="a" href="./breakout.html">Breakout Brick</a></td>
+
+          <td><a class="a" href="./hippo.html">Hippo war</a></td>
+
+          <td><a class="a"  href="./thebetterlouissite.html">Home</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>These are the (mostly)classic games made by Louis. You may only play the <strong>hippo war</strong> if you are a <strong>hipo-lizard man</strong> that wears <strong>3 jackets</strong> and <strong>2 undershirts</strong> everyday.</p>
+  
+  
+  
+    <h1>Off-Brand Galaga by Louis</h1>
+    <h4 id="display"></h4>
+    <canvas id="myCanvas" width="400" height="400"></canvas><br>
+    <button onclick="left()">Left</button>
+    <button onclick="fire()">Fire</button>
+    <button onclick="right()">Right</button>
+    <script>
+      //vars
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      var x = 200;
+      var enemies = {};
+      var bullets = {};
+      var enemyBullets = {};
+      var cooldown = 200;
+      var count = 0;
+      var count2 = 0;
+      var count3 = 0;
+      var enemyTypes = ["shooter","shooter", "charger","super"];
+      var direction = "right";
+      var score = 0;
+      var goingLeft = false;
+      var goingRight = false;
+      var type = null;
+      var enemyy = 0;
+      var enemyx = 0;
+      var speed = 1;
+      var lives = 3;
+      var reversed = false;
+      var respawned = true;
+      var enemyBullets = {};
+      var gameover = false;
+
+      //functions
+      function spawnEnemies() {
+        enemyy = 20;
+        enemyx = -30;
+        while (count2 < 18) {
+          count2 += 1;
+          enemyx += 60;
+          if (enemyx == 390) {enemyx = 30;enemyy += 40}
+          type = enemyTypes[Math.ceil(Math.random() * 4 - 1)]
+          enemies[type + String(count2)] = {};
+          enemies[type + String(count2)]["startx"] = enemyx;
+          enemies[type + String(count2)]["starty"] = enemyy;
+          enemies[type + String(count2)]["x"] = enemyx;
+          enemies[type + String(count2)]["y"] = enemyy;
+          enemies[type + String(count2)]["alive"] = true;
+          enemies[type + String(count2)]["type"] = type;
+          enemies[type + String(count2)]["charging"] = false;
+          enemies[type + String(count2)]["reversing"] = false;
+        }}
+      spawnEnemies();
+
+      function spawnBullet() {
+        count += 1;
+        bullets["bullet" + String(count)] = {};
+        bullets["bullet" + String(count)]["x"] = x;
+        bullets["bullet" + String(count)]["y"] = 350;
+        bullets["bullet" + String(count)]["alive"] = true;
+      }
+
+
+      function onNewFrame() {
+        if (lives <= -1) {gameover = true}
+        if (gameover == false) {
+          //animation
+          document.getElementById("display").innerHTML = "SCORE: " + String(score) + " LIVES: " + String(lives);
+          ctx.clearRect(0,0,400,400);
+          ctx.beginPath();
+          ctx.arc(x,350,15,0,Math.PI * 2);
+          ctx.rect(x - 30,345,60,10);
+          ctx.fillStyle = "#ffffff";
+          ctx.fill();
+          ctx.closePath();
+
+          for (i in bullets) {
+            if (bullets[i]["alive"]) {
+              ctx.beginPath()
+              ctx.arc(bullets[i]["x"],bullets[i]["y"],5,0,Math.PI * 2);
+              ctx.fill();
+              ctx.closePath();
+              bullets[i]["y"] -= 5;
+              for (ii in enemies) {
+                if (enemies[ii]["alive"]) {
+                  if (bullets[i]["x"] > enemies[ii]["x"] && bullets[i]["x"] < enemies[ii]["x"] + 40 && bullets[i]["y"] > enemies[ii]["y"] && bullets[i]["y"] < enemies[ii]["y"] + 20) {bullets[i]["alive"] = false;enemies[ii]["alive"] = false;score += 1000;respawned = false}
+                }}}}
+
+          for (i in enemies) {
+            if (enemies[i]["alive"]) {
+              if (reversed == false) {
+                if (enemies[i]["x"] <= 0 || enemies[i]["x"] + 40 >= 400) {speed *= -1; reversed = true}
+              }}} reversed = false;
+
+          for (i in enemies) {
+            if (enemies[i]["alive"]) {
+              ctx.beginPath()
+              ctx.rect(enemies[i]["x"],enemies[i]["y"],40,20)
+              if (enemies[i]["type"] == "shooter") {ctx.fillStyle = "yellow"}
+              if (enemies[i]["type"] == "charger") {ctx.fillStyle = "orange"}
+              if (enemies[i]["type"] == "super") {ctx.fillStyle = "red"}
+              ctx.fill()
+              ctx.closePath()
+              enemies[i]["x"] += speed;
+              if (enemies[i]["type"] == "charger" || enemies[i]["type"] == "super") {
+                if (enemies[i]["x"] < x + 30 && enemies[i]["x"] > x - 30 && enemies[i]["reversing"] == false) {enemies[i]["charging"] = true}
+                if (enemies[i]["charging"]) {enemies[i]["y"] += 2}
+                if (enemies[i]["reversing"]) {enemies[i]["y"] -= 2}
+                if (enemies[i]["y"] + 20 >= 380) {enemies[i]["charging"] = false; enemies[i]["reversing"] = true; enemies[i]["charging"] = false}
+                if (enemies[i]["reversing"] && enemies[i]["y"] == enemies[i]["starty"]) {enemies[i]["reversing"] = false}
+                if (enemies[i]["y"] + 20 >= 335 && enemies[i]["y"] <= 365 && enemies[i]["x"] + 40 >= x - 30 && enemies[i]["x"] <= x + 30) {score += 1000;enemies[i]["alive"] = false;lives -= 1}
+              }}
+
+          }
+          for (i in enemyBullets) {
+            if (enemyBullets[i]["alive"]) {
+              ctx.beginPath()
+              ctx.arc(enemyBullets[i]["x"],enemyBullets[i]["y"],5,0,Math.PI * 2)
+              ctx.fill()
+              ctx.closePath()
+              enemyBullets[i]["x"] += enemyBullets[i]["speed"] / 2;
+              enemyBullets[i]["y"] += Math.abs(enemyBullets[i]["speed"])
+              if (enemyBullets[i]["y"] > 400) {enemyBullets[i]["alive"] = false}
+
+              if (enemyBullets[i]["x"] > x - 30 && enemyBullets[i]["x"] < x + 30 && enemyBullets[i]["y"] > 335 && enemyBullets[i]["y"] > 400 < 365) {lives -= 1; enemyBullets[i]["alive"] = false}
+            }}
+
+
+          if (goingLeft) {if (x > 30) {x -= 5}}
+          if (goingRight) {if (x < 370) {x += 5}}
+          if (score % 18000 == 0 && respawned == false) {for (i in enemies) {enemies[i]["alive"] = true;enemies[i]["x"] = enemies[i]["startx"];enemies[i]["y"] = enemies[i]["starty"];respawned = true}}
+          cooldown -= 1;
+          if (cooldown == 0) {
+            cooldown = 200;
+            for (i in enemies) {
+              if (enemies[i]["alive"]) {
+                if (enemies[i]["type"] == "shooter" || enemies[i]["type"] == "super") {
+                  count3 += 1;
+                  enemyBullets["bullet" + String(count3)] = {};
+                  enemyBullets["bullet" + String(count3)]["x"] = enemies[i]["x"] + 20;
+                  enemyBullets["bullet" + String(count3)]["speed"] = speed;
+                  enemyBullets["bullet" + String(count3)]["alive"] = true;
+                  enemyBullets["bullet" + String(count3)]["y"] = enemies[i]["y"] + 10;
+                }
+
+
+              }
+            }
+          }
+        }
+      }
+
+
+      //controls
+      function left() {x -= 50}
+      function right() {x += 50}
+      function fire() {spawnBullet()}
+
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key == 'a') {
+          goingLeft = true}
+        if (event.key == 'd') {
+          goingRight = true}
+        if (event.key == ' ')  {
+          spawnBullet()}
+        if (event.key == 'l')  {
+          spawnBullet()}
+      });
+
+      document.addEventListener('keyup', function(event) {
+        if (event.key == 'a') {
+          goingLeft = false}
+        if (event.key == 'd') {
+          goingRight = false}
+      });
+
+      setInterval(onNewFrame,10);
+    </script>
+  </body>
+</html>

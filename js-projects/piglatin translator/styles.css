@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, Sans-Serif;
+}
+
+body {
+  background: #1e2631;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-direction: column;
+}
+
+h1, h2 {
+  color: #f5f6fa;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+.con {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 30px 0;
+  width: 60%;
+  min-width: 500px;
+  background: #ff9d00;
+}
+
+#input, #output {
+  background: #f5f6fa;
+  padding: 10px;
+  width: 30%;
+  height: 100px;
+	line-height: 100px;
+  font-size: 20px;
+  overflow: auto;
+  color: black;
+}
+
+#input {
+  resize: none;
+}
+
+#go {
+  height: 60px;
+  padding: 0 25px;
+  font-size: 18px;
+}

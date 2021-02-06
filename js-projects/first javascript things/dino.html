@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+  <Canvas width = "500" height = "500" id = "canvas"></Canvas><br/>
+  <button id = "jump" onclick="jump()">jump or press sapce</button>
+
+  <script>
+    var mooo = document.getElementById("canvas");
+    var ctx = mooo.getContext("2d");
+    var moo = mooo.getContext("2d");
+    var obplace = 500;
+    var obspeed = 5;
+    var obplace2 = 700;
+    var obspeed2 = 5;
+    var playerpl = 450;
+    var jumping = false;
+    var falling = false;
+    var score = 0;
+    var random = Math.floor(Math.random()*301+300)
+
+    function enemy(){
+      moo.beginPath();
+      moo.rect(obplace,460,25,40);
+      moo.fill();
+      moo.closePath();
+      moo.beginPath();
+      moo.rect(obplace2,460,25,40);
+      moo.fill();
+      moo.closePath();
+      obplace -= obspeed;
+      obplace2 -= obspeed2;
+      if (obplace <= -25) {obplace = Math.floor(Math.random()*500+500)};
+      
+      if (obplace2 <= -25) {obplace2 = Math.floor(Math.random()*500+random)};
+    }
+
+    function player(){
+      ctx.clearRect(0,0,500,500)
+      ctx.beginPath();
+      ctx.rect(100,playerpl,25,50);
+      ctx.fill();
+      ctx.closePath();
+      enemy()
+      if (playerpl <= 330) {jumping = false;falling = true;}
+      if (jumping) {playerpl -= 8}
+      if (falling) {playerpl += 8}
+      if (playerpl >= 450) {falling = false;playerpl = 450}
+      if (obplace === playerpl-330 || obplace2 === playerpl-330) {clearInterval(int)};
+      if (score === 100) {obspeed += 2};
+      document.addEventListener('keydown', function(event) {
+        if (event.code == 'Space') {
+          jump()}});
+    }
+
+    function jump(){
+      if (falling == false) {jumping = true}
+    }
+
+    var int = setInterval(player,25)
+  </script>
+
+  <style>
+    body {background-color: blue;}
+
+    canvas {background-color: white;}
+
+    button{width: 500px};
+    
+    player {background-image: ;}
+  </style>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./louis.css" type="text/css">
+      <title>The Louis Site</title>
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Louis classic games</h1>
+      <h4>Made by an udderly smart cow</h4>
+    </div><br>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><a class="left a" href="./dino2.html">The dinosaur game</a></td>
+
+          <td><a class="a" href="./pong.html">Pong</a></td>
+
+          <td><a class="a" href="./galaga.html">Galaga</a></td>
+
+          <td><a class="a" href="./breakout.html">Breakout Brick</a></td>
+
+          <td><a class="a" href="./hippo.html">Hippo war</a></td>
+
+          <td><a class="a"  href="./thebetterlouissite.html">Home</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>These are the (mostly)classic games made by Louis. You may only play the <strong>hippo war</strong> if you are a <strong>hipo lizard man</strong> that wears <strong>3 jackets</strong> and <strong>2 undershirts</strong> everyday.</p>
+  
+    <h1>hippo war by Louis</h1>
+    <h3>WASD to move IJKL to shoot</h3><br>
+    <h3 id="display"></h3>
+    <canvas id="canvas" width="500" height="500"></canvas><br>
+    <script>
+      alert("are you a hippo-lizard man that wears 3 jackets and 2 undershirts everyday.")
+      //vars
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var x = 250;
+      var y = 250;
+      var goingUp = false;
+      var goingDown = false;
+      var goingLeft = false;
+      var goingRight = false;
+      var aimingUp = false;
+      var aimingDown = false;
+      var aimingLeft = false;
+      var aimingRight = false;
+      var bullets = {};
+      var globalBulletXspeed = 0;
+      var globalBulletYspeed = 0;
+      var count = 0;
+      var enemies = {};
+      var enemySpawnLocations = [0,500];
+      var count2 = 0;
+      var count3 = 0;
+      var enemiesInWave = 0;
+      var enemyTypes = ["normal","normal","normal","normal","normal","normal","normal","normal","normal","normal","normal","speeder"];
+      var lives = 3;
+      var score = 0;
+  
+      //functions
+      function newWave() {
+        count3 = 0;
+        enemiesInWave = Math.ceil(Math.random() * 5 + 5)
+        while (count3 < enemiesInWave) {
+          count2 += 1;
+          count3 += 1;
+          enemies["enemy" + String(count2)] = {};
+          enemies["enemy" + String(count2)]["type"] = enemyTypes[Math.ceil(Math.random() * 12)]
+          enemies["enemy" + String(count2)]["x"] = enemySpawnLocations[Math.ceil(Math.random() * 2 - 1)];
+          enemies["enemy" + String(count2)]["y"] = Math.ceil(Math.random() * 800 / 2);
+          enemies["enemy" + String(count2)]["alive"] = true;
+          enemies["enemy" + String(count2)]["speed"] = 1;
+          if (enemies["enemy" + String(count2)]["type"] == "speeder") {enemies["enemy" + String(count2)]["speed"] = 3}
+        }
+      }
+  
+      function spawnBullet() {
+        if (!(globalBulletXspeed == 0) || !(globalBulletYspeed == 0)) {
+          count += 1;
+          bullets["bullet" + String(count)] = {};
+          bullets["bullet" + String(count)]["alive"] = true;
+          bullets["bullet" + String(count)]["x"] = x;
+          bullets["bullet" + String(count)]["y"] = y;
+          bullets["bullet" + String(count)]["xspeed"] = globalBulletXspeed;
+          bullets["bullet" + String(count)]["yspeed"] = globalBulletYspeed;
+        }
+      }
+  
+      function onNewFrame() {
+        //animation
+        document.getElementById("display").innerHTML = "Score: " + String(score) + " Lives: " + String(lives)
+  
+        ctx.clearRect(0,0,500,500)
+        ctx.fillStyle = "#000000";
+        ctx.beginPath()
+        ctx.arc(x,y,15,0,Math.PI * 2)
+        ctx.fill()
+        ctx.closePath()
+  
+        for (i in bullets) {
+          if (bullets[i]["alive"]) {
+            ctx.beginPath()
+            ctx.arc(bullets[i]["x"],bullets[i]["y"],5,0,Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+          }
+        }
+  
+        for (i in enemies) {
+          if (enemies[i]["alive"]) {
+            ctx.beginPath()
+            ctx.arc(enemies[i]["x"],enemies[i]["y"],15,0,Math.PI * 2)
+            if (enemies[i]["type"] == "speeder") {ctx.fillStyle = "red"} else {ctx.fillStyle = "orange"}
+            ctx.fill()
+            ctx.closePath()
+          }
+        }
+  
+        //player
+        if (goingUp) {if (y > 15) {y -= 4}}
+        if (goingDown) {if (y < 485) {y += 4}}
+        if (goingLeft) {if (x > 15) {x -= 4}}
+        if (goingRight) {if (x < 485) {x += 4}}
+        if (lives < 0) {clearInterval(interval)}
+        //bullets
+        globalBulletXspeed = 0;
+        globalBulletYspeed = 0;
+        if (aimingUp) {globalBulletYspeed -= 4}
+        if (aimingDown) {globalBulletYspeed += 4}
+        if (aimingLeft) {globalBulletXspeed -= 4}
+        if (aimingRight) {globalBulletXspeed += 4}
+        for (i in bullets) {
+          if (bullets[i]["alive"]) {
+            bullets[i]["x"] += bullets[i]["xspeed"]
+            bullets[i]["y"] += bullets[i]["yspeed"]
+  
+            for (ii in enemies) {if (enemies[ii]["alive"]) {
+              if (bullets[i]["x"] >= enemies[ii]["x"] - 15 && bullets[i]["x"] <= enemies[ii]["x"] + 15 && bullets[i]["y"] >= enemies[ii]["y"] - 15 && bullets[i]["y"] <= enemies[ii]["y"] + 15) {bullets[i]["alive"] = false; enemies[ii]["alive"] = false; score += 100}
+            }}
+  
+            if (bullets[i]["x"] > 500 || bullets[i]["x"] < 0 || bullets[i]["y"] > 500 || bullets[i]["y"] < 0) {bullets[i]["alive"] = false}
+          }}
+  
+        //enemies
+        for (i in enemies) {
+          if (enemies[i]["alive"]) {
+            if (enemies[i]["x"] > x) {enemies[i]["x"] -= enemies[i]["speed"]}
+            if (enemies[i]["x"] < x) {enemies[i]["x"] += enemies[i]["speed"]}
+            if (enemies[i]["y"] > y) {enemies[i]["y"] -= enemies[i]["speed"]}
+            if (enemies[i]["y"] < y) {enemies[i]["y"] += enemies[i]["speed"]}
+  
+            if (enemies[i]["x"] + 15 >= x - 15 && enemies[i]["x"] - 15 <= x + 15 && enemies[i]["y"] + 15 >= y - 15 && enemies[i]["y"] - 15 <= y + 15) {enemies[i]["alive"] = false; lives -= 1}
+          }
+        }
+      }
+  
+      //controls
+      document.addEventListener('keydown', function(event) {
+        if (event.key == 'w') {
+          goingUp = true}
+        if (event.key == 's') {
+          goingDown = true}
+        if (event.key == 'a') {
+          goingLeft = true}
+        if (event.key == 'd') {
+          goingRight = true}
+        if (event.key == 'i') {
+          aimingUp = true}
+        if (event.key == 'k') {
+          aimingDown = true}
+        if (event.key == 'j') {
+          aimingLeft = true}
+        if (event.key == 'l') {
+          aimingRight = true}
+      });
+  
+      document.addEventListener('keyup', function(event) {
+        if (event.key == 'w') {
+          goingUp = false}
+        if (event.key == 's') {
+          goingDown = false}
+        if (event.key == 'a') {
+          goingLeft = false}
+        if (event.key == 'd') {
+          goingRight = false}
+        if (event.key == 'i') {
+          aimingUp = false}
+        if (event.key == 'k') {
+          aimingDown = false}
+        if (event.key == 'j') {
+          aimingLeft = false}
+        if (event.key == 'l') {
+          aimingRight = false}
+      });
+  
+  
+  
+  
+      var interval = setInterval(onNewFrame,20);
+      setInterval(spawnBullet,200);
+      setInterval(newWave,3000)
+    </script>
+  </body>
+</html>

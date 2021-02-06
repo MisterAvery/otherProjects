@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Sans-Serif;
+      }
+      
+      body {
+        height:100vh;
+        background-image: url('https://images.wallpaperscraft.com/image/mountains_clouds_trees_snow_119169_3840x2160.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: 2.75s all;
+      }
+      
+      #time {
+        width: 55%;
+        text-align: center;
+        font-size: 70px;
+        letter-spacing: 3px;
+        padding: 0.6em 0;
+        margin: 27px auto;
+        background: #ebebebcc;
+        transition: 300ms ease-out;
+      }
+      
+      #time:hover {
+        background: #ebebeb;
+      }
+      
+      .message {
+        width: 90%;
+        background: #28282877;
+        color: #e8e8e8;
+        padding: 0.2em 0;
+        line-height: 65px;
+        text-align: center;
+        font-size: 38px;
+        border-radius: 5px;
+      }
+      
+      @media screen and (max-width: 800px) {
+        #time {
+          font-size: 55px;
+          letter-spacing: 1px;
+          width: 80%;
+        }
+        
+        .message {
+          font-size: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body id="bg">
+    <div style="display: none;">
+      <img src="https://images.wallpaperscraft.com/image/mountains_clouds_trees_snow_119169_3840x2160.jpg">
+      <img src="https://free4kwallpapers.com/uploads/originals/2015/10/15/whats-the-greatest-wallpaper-you-have.jpg">
+      <img src="http://backgrounds4k.net/wp-content/uploads/2016/06/Mountains-uhd-background.jpg">
+      <img src="https://free4kwallpapers.com/uploads/originals/2016/06/26/winter-uhd-mountains-4k-wallpaper.jpg">
+      <img src="https://images2.alphacoders.com/566/566239.jpg">
+    </div>
+    <h2 class="message" style="margin-top: 50px;">Their are</h2>
+    <div id="time">One Second</div>
+    
+    <h2 class="message">Seconds Until You Come Home<br>I love You Dad and I can't wait to see you<br>I Miss You</h2>
+    
+    <script>
+      let images = ['https://images.wallpaperscraft.com/image/mountains_clouds_trees_snow_119169_3840x2160.jpg',
+                    'https://free4kwallpapers.com/uploads/originals/2015/10/15/whats-the-greatest-wallpaper-you-have.jpg',
+                    'http://backgrounds4k.net/wp-content/uploads/2016/06/Mountains-uhd-background.jpg',
+                    'https://free4kwallpapers.com/uploads/originals/2016/06/26/winter-uhd-mountains-4k-wallpaper.jpg',
+                    'https://images2.alphacoders.com/566/566239.jpg'];
+      let imgTracker = 0;
+      
+      function newImg() {
+        document.getElementById('bg').style.backgroundImage = `url(${images[imgTracker]})`;
+        if(imgTracker < 4) {
+          imgTracker++;
+        } else {
+          imgTracker = 0;
+        }
+      }
+      
+      let homeDate = new Date(2020, 6, 2).getTime();
+      let tracker = 0;
+      
+      setInterval(function() {
+        let now = new Date().getTime();
+        let Tgap = homeDate - now;
+        document.getElementById('time').innerHTML = Math.round(Tgap/1000);
+        tracker++;
+            
+        if(tracker == 4) {
+          newImg();
+          tracker = 0;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

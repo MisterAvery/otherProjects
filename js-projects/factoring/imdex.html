@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <textarea></textarea>
+    <button onclick="factor()">Factor</button>
+
+    <script>
+      function factor() {
+        let input = Number(document.querySelector('textarea').value);
+        let attemptValues = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144];
+        
+        for(let i = attemptValues.length - 1; i > -1; i--) {
+          let value = attemptValues[i];
+          
+          if(input == value) alert('perfect square');
+          else if(input % value === 0) {
+            alert(`divisor: ${value}    quotient: ${input / value}`);
+            return;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

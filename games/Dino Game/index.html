@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      body {
+        background: linear-gradient(#088cf1, #08cef1);
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #label  {
+        font-size: 30px;
+        color: white;
+        font-weight: 700;
+      }
+
+      #auto {
+        cursor: pointer;
+      }
+
+      #canvas {
+        background: white;
+        margin: 40px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="./sprites.png" id="dino" style="display: none;">
+
+    <label id="label">Automate: 
+      <input type="checkbox" id="auto">
+    </label>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="./main.js"></script>
+  </body>
+</html>

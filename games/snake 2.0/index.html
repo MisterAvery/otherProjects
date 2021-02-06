@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snake Game | glitchedGoose()</title>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background: #e5e5e5;
+      }
+      
+      canvas {
+        border: 20px solid #444;
+      }
+      
+      .control-info {
+        font-family: mono;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 10px solid #444;
+        position: absolute;
+        right: 3%;
+        top: 100px;
+        width: 250px;
+        height: 250px;
+      }
+      
+      .control-info h2 {
+        margin-bottom: 6px;
+        font-size: 27px;
+      }
+      
+      .control-info li {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="520" height="520"></canvas>
+    
+    <div class="control-info">
+      <h2>CONTROLLS:</h2>
+      <ul>
+        <li><span style="color: red;">Up:</span> Rotate</li>
+        <li><span style="color: dodgerblue;">Down:</span> Drop</li>
+        <li><span style="color: limegreen;">Left:</span> Left</li>
+        <li><span style="color: #c3c;">Right</span> Right</li>
+      </ul>
+    </div>
+    
+    <script src="./apple.js"></script>
+    <script src="./snake.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

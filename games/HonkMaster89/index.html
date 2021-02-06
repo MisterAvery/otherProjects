@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HonkMaster89</title>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    
+      body {
+        overflow: hidden;
+      }
+
+      .hpcon {
+        position: absolute;
+        top: 0;
+        color: #eee;
+        font-size: 18px;
+        font-family: Roboto;
+        padding: 0.6em 0.6em;
+        z-index: 10;
+        text-align: center;
+      }
+
+      .p1 {
+        left: 0;
+        background: #222;
+      }
+
+      .p2 {
+        right: 0;
+        background: #888;
+      }
+    
+      canvas {
+        background: linear-gradient(to right, #888 0% 47%, #2d5af0 47% 53%, #222 53% 100%);
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="hpcon p1">Player 1 HP: 5</div>
+    <div class="hpcon p2">Player 2 HP: 5</div>
+
+    <canvas id="canvas"></canvas>
+    
+    <script src="./main.js"></script>
+  </body>
+</html>

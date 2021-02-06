@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Avery Learns to typewrite</title>
+		
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: Roboto, sans-serif;
+			}
+			
+			body {
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-evenly;
+				background: #fa0;
+			}
+			
+			.title, .wordsAnswered {
+				position: relative;
+				letter-spacing: 2px;
+				font-weight: 900;
+				color: #222;
+				padding: 15px 170px;
+			}
+			
+			.title {
+				font-size: 40px;
+				padding: 15px 170px;
+			}
+			
+			.wordsAnswered {
+				font-size: 24px;
+				padding: 15px 100px;
+			}
+			
+			.title::after, .wordsAnswered::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #f5f5f5;
+				transform: skewY(45deg) rotateZ(-45deg);
+				z-index: -1;
+				box-shadow: 100px 0 0 10px #bbb;
+			}
+			
+			.container {
+				width: 100%;
+				height: 18vh;
+				display: flex;
+				align-items: center;
+				justify-content: space-evenly;
+			}
+			
+			.typethiscon, .input {
+				width: 32%;
+				height: 175px;
+				border: 10px solid #3b7fed;
+				background: #f5f5f5;
+				padding: 14px 20px;
+				font-size: 25px;
+			}
+			
+			.input {font-size: 44px;}
+			
+			.typethiscon {text-align: center;}
+			.typethiscon h4 {font-weight: 900;}
+			.typethis {
+				margin-top: 9px;
+				font-size: 44px;
+				font-weight: 400;
+				background: #3b7fed;
+				color: #f5f5f5;
+				padding: 8px 25px;
+				display: inline-block;
+			}
+			
+			
+			.check {
+				font-size: 22px;
+				letter-spacing: 1px;
+				width: 150px;
+				height: 60px;
+				line-height: 50px;
+				text-align: center;
+				cursor: pointer;
+				background: #222;
+				color: #f5f5f5;
+				border: none;
+				outline: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="title">Avery's imaculate indescribably<br> spectacular typewriting trainer</h1>
+		
+		<div class="container">
+			<div class="typethiscon">
+				<h4>Type This:</h4>
+				<h2 class="typethis"></h2>
+			</div>
+			
+			<button class="check" onClick="check()">Check</button>
+			<input class="input" type="text" placeholder="Type Here">
+		</div>
+		
+		<h2 class="wordsAnswered">Words Answered: 0</h2>
+		
+		
+		<script src="./main.js"></script>
+	</body>
+</html>

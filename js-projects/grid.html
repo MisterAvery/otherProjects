@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <style>
+            :root {--ammount: 25;}
+
+            #graph-con {
+                border: 3px solid black;
+                margin: 50px auto;
+                width: 500px;
+                height: 500px;
+                display: grid;
+                grid-template: repeat(var(--ammount), 1fr) / repeat(var(--ammount), 1fr);
+            }
+
+            .graph-itm {
+                border: 1px solid black;
+                background: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="graph-con"></div>
+
+        <script>
+            let realammount = getComputedStyle(document.documentElement).getPropertyValue('--ammount');
+            document.documentElement.style.setProperty('--ammount', realammount);
+
+            for (let i = 0; i < realammount ** 2; i++) {document.getElementById('graph-con').innerHTML += '<div class="graph-itm"></div>'}
+        </script>
+    </body>
+</html>

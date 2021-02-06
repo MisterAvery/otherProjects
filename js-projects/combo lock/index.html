@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Combonation Lock</title>
+    <link href="styles.css" type="text/css" rel="stylesheet">
+  </head>
+
+  <body>
+    <h1>Welcome To My Combonation Lock</h1>
+    <h2>Get All The Numbers Correct to Unlock The Prize</h2>
+    <div id="lock">
+      <div class="num" id="d1" onclick="d1++">0</div>
+      <div class="num" id="d2" onclick="d2++">0</div>
+      <div class="num" id="d3" onclick="d3++">0</div>
+      <div class="num" id="d4" onclick="d4++">0</div>
+      <div class="num" id="d5" onclick="d5++">0</div>
+      <div class="num" id="d6" onclick="d6++">0</div>
+      <div class="num" id="d7" onclick="d7++">0</div>
+      <div class="num" id="d8" onclick="d8++">0</div>
+      <div class="num" id="d9" onclick="d9++">0</div>
+      <div class="num" id="d10" onclick="d10++">0</div>
+    </div>
+    <h2>This lock has <span>10,000,000,000</span> combonations</h2>
+    <h4>created by anUdderlySmartCow 2019</h4>
+
+   <script>
+      let digits = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3'),
+              document.getElementById('d4'), document.getElementById('d5'), document.getElementById('d6'),
+              document.getElementById('d7'), document.getElementById('d8'), document.getElementById('d9'),
+              document.getElementById('d10')];
+      let d1 = d2 = d3 = d4 = d5 = d6 = d7 = d8 = d9 = d10 = 0;
+      
+      let d1comb = Math.round(Math.random()*9);
+      let d2comb = Math.round(Math.random()*9);
+      let d3comb = Math.round(Math.random()*9);
+      let d4comb = Math.round(Math.random()*9);
+      let d5comb = Math.round(Math.random()*9);
+      let d6comb = Math.round(Math.random()*9);
+      let d7comb = Math.round(Math.random()*9);
+      let d8comb = Math.round(Math.random()*9);
+      let d9comb = Math.round(Math.random()*9);
+      let d10comb = Math.round(Math.random()*9);
+      setInterval(() => {
+        digits[0].innerHTML = d1;
+        digits[1].innerHTML = d2;
+        digits[2].innerHTML = d3;
+        digits[3].innerHTML = d4;
+        digits[4].innerHTML = d5;
+        digits[5].innerHTML = d6;
+        digits[6].innerHTML = d7;
+        digits[7].innerHTML = d8;
+        digits[8].innerHTML = d9;
+        digits[9].innerHTML = d10;
+        
+        if(d1 == 10) {d1 = 0}
+        if(d2 == 10) {d2 = 0}
+        if(d3 == 10) {d3 = 0}
+        if(d4 == 10) {d4 = 0}
+        if(d5 == 10) {d5 = 0}
+        if(d6 == 10) {d6 = 0}
+        if(d7 == 10) {d7 = 0}
+        if(d8 == 10) {d8 = 0}
+        if(d9 == 10) {d9 = 0}
+        if(d10 == 10) {d10 = 0}
+        
+        if(d1 == d1comb && d2 == d2comb && d3 == d3comb && d4 == d4comb && d5 == d5comb && d6 == d6comb && d7 == d7comb && d8 == d8comb && d9 == d9comb && d10 == d10comb) {
+          document.getElementById('lock').style.background = '#148d02';
+        }
+      }, 1000/60);
+   </script>
+  </body>
+</html>

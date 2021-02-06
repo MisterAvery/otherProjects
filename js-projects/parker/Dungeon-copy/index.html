@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <canvas width="500" height="500" style="background:#ddd;"></canvas>
+  
+  <script>
+    let canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+    let cloudyboi = new cloud();
+    let mrcloud = new cloud();
+    let supercloud = new cloud();
+    let anUdderlySmartCow = new player();
+
+    
+    
+    function cloud() {
+      this.y = Math.round(Math.random() * 200);
+      this.x = Math.round(Math.random() * 400);
+      this.speed = 3;
+      // this.speed = Math.random() * 3 + 1.6;
+      
+      this.show = function() {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(this.x, this.y, 80, 30);
+      }
+      
+      this.move = function() {
+        this.x = this.x - this.speed;
+        
+        if(this.x + 80 < 0) {
+          this.x = 500;
+        }
+      }
+    }
+    
+    function player() {
+      this.x = 50;
+      this.y = 430 - 80;
+      this.jumping = false;
+      this.xAcl = 0;
+      this.yAcl = 0;
+      this.xVel = 0;
+      this.yVel = 0;
+      
+      this.show = function() {
+        ctx.fillStyle = 'red';
+        ctx.fillRect(this.x, this.y, 50, 80);
+      }
+    }
+    
+    function loopydog() {
+      anUdderlySmartCow.xVel = 0;
+      anUdderlySmartCow.yVel = 0;
+      
+      if(anUdderlySmartCow.y < 350) {
+        anUdderlySmartCow.yAcl = anUdderlySmartCow.yAcl + 0.5;
+      }
+      
+      ctx.fillStyle = '#5cf';
+      ctx.fillRect(0, 0, 500, 500);
+    
+      ctx.fillStyle = 'green';
+      ctx.fillRect(0, 405, 500, 95);
+      
+      cloudyboi.show();
+      cloudyboi.move();
+      
+      mrcloud.show();
+      mrcloud.move();
+      
+      supercloud.show();
+      supercloud.move();
+      
+      anUdderlySmartCow.xVel = anUdderlySmartCow.xVel + anUdderlySmartCow.xAcl;
+      anUdderlySmartCow.yVel = anUdderlySmartCow.yVel + anUdderlySmartCow.yAcl;
+      
+      anUdderlySmartCow.x = anUdderlySmartCow.x + anUdderlySmartCow.xVel;
+      anUdderlySmartCow.y = anUdderlySmartCow.y + anUdderlySmartCow.yVel;
+
+      if(anUdderlySmartCow.y > 350) {
+        anUdderlySmartCow.jumping = false;
+        anUdderlySmartCow.yVel = 0;
+        anUdderlySmartCow.y = 350;
+      }
+      
+      if(anUdderlySmartCow.x + 50 >= canvas.width) {
+        anUdderlySmartCow.xVel = 0;
+        anUdderlySmartCow.x = canvas.width - 49;
+      }
+      
+      if(anUdderlySmartCow.x <= 0) {
+        anUdderlySmartCow.xVel = 0;
+        anUdderlySmartCow.x = 1;
+      }
+      
+      anUdderlySmartCow.show();
+      
+      if(supercloud.speed < 10) {
+        supercloud.speed = supercloud.speed + 0.1;
+      }
+      
+      window.requestAnimationFrame(loopydog);
+    }
+    
+    window.addEventListener('keydown', function(event) {
+      if(event.keyCode == 37) {
+        anUdderlySmartCow.xAcl = -7;
+      }
+      
+      if(event.keyCode == 39) {
+        anUdderlySmartCow.xAcl = 7;
+      }
+      
+      if(event.keyCode == 38 && anUdderlySmartCow.jumping == false) {
+        anUdderlySmartCow.jumping = true;
+        anUdderlySmartCow.yAcl = -10;
+      }
+    });
+    
+    window.addEventListener('keyup', function(event) {
+      if(event.keyCode == 37) {
+        anUdderlySmartCow.xAcl = 0;
+      }
+      
+      if(event.keyCode == 39) {
+        anUdderlySmartCow.xAcl = 0;
+      }
+    })
+    loopydog();
+  </script>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snake Game | glitchedGoose()</title>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background: #e5e5e5;
+      }
+      
+      canvas {
+        border: 20px solid #444;
+      }
+      
+      .control-info {
+        font-family: mono;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 10px solid #444;
+        position: absolute;
+        right: 3%;
+        top: 100px;
+        width: 250px;
+        height: 250px;
+      }
+      
+      .control-info h2 {
+        margin-bottom: 6px;
+        font-size: 27px;
+      }
+      
+      .control-info li {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="520" height="520"></canvas>
+    
+    <div class="control-info">
+      <h2>CONTROLLS:</h2>
+      <ul>
+        <li><span style="color: red;">Up:</span> Rotate</li>
+        <li><span style="color: dodgerblue;">Down:</span> Drop</li>
+        <li><span style="color: limegreen;">Left:</span> Left</li>
+        <li><span style="color: #c3c;">Right</span> Right</li>
+      </ul>
+    </div>
+    
+    <script>
+      class Apple {
+        constructor() {
+          this.x;
+          this.y;
+        }
+        
+        pickLocation() {
+          this.x = Math.floor(Math.random() * gameSideLength) * tilePixelSideLength;
+          this.y = Math.floor(Math.random() * gameSideLength) * tilePixelSideLength;
+        }
+        
+        show() {
+          ctx.fillRect(this.x, this.y, tilePixelSideLength, tilePixelSideLength);
+        }
+      }
+    </script><!--apple code-->
+    <script>
+      class Snake {
+        constructor() {
+          this.x = Math.floor(Math.random() * gameSideLength) * tilePixelSideLength;
+          this.y = Math.floor(Math.random() * gameSideLength) * tilePixelSideLength;
+          this.dir = {x: 0, y: 0};
+          this.lastMove;
+          this.tail = [];
+        }
+        
+        show() {
+          ctx.beginPath();
+          ctx.rect(this.x, this.y, tilePixelSideLength, tilePixelSideLength);
+          ctx.fill();
+          ctx.stroke();
+          ctx.closePath();
+        }
+        
+        changeDir(event) {
+          // if(timeSincePageLoad % framesBetweenMovements == 0) {
+            let newDir = {x: 0, y: 0};
+            
+            switch(event.keyCode) {
+              case 37:
+                newDir.x = -tilePixelSideLength;
+                newDir.y = 0;
+                break;
+              case 38:
+                newDir.y = -tilePixelSideLength;
+                newDir.x = 0;
+                break;
+              case 39:
+                newDir.x = tilePixelSideLength;
+                newDir.y = 0;
+                break;
+              case 40:
+                newDir.y = tilePixelSideLength;
+                newDir.x = 0;
+                break;
+            }
+              
+            if((-newDir.x != this.dir.x || newDir.x === 0) && (-newDir.y != this.dir.y || newDir.y === 0)) this.dir = newDir;
+          // }
+        }
+        
+        move() {
+          this.x += this.dir.x;
+          this.y += this.dir.y;
+          
+          if(this.x + tilePixelSideLength > width || this.x < 0 || this.y + tilePixelSideLength > height || this.y < 0) GAMESTATE = 'over';
+        }
+        
+        eat() {
+          if(this.x == apple.x && this.y == apple.y) {
+            // for(let i = 0; i < 15; i++) {//uncomment for cheats
+              this.tail.push({x: this.x + this.dir.x * tilePixelSideLength, y: this.y + this.dir.y * tilePixelSideLength});
+             
+              score++;
+            // }
+            apple.pickLocation();
+          }
+        }
+      }
+    </script><!--snake code-->
+    <script>
+      let canvas = document.querySelector('canvas');
+      let ctx = canvas.getContext('2d');
+      let bounds = canvas.getBoundingClientRect();
+      
+      let width = canvas.width;
+      let height = canvas.height;
+      let gameSideLength = 20;
+      let tilePixelSideLength = Math.floor(width / gameSideLength);
+      let GAMESTATE = 'title';
+      let score = 0;
+      let highScore = 0;
+      let timeSincePageLoad = 0;
+      let fps = 10;
+      let framesBetweenMovements = 60/fps;
+        
+      let apple = new Apple();
+      apple.pickLocation();
+      
+      let snake = new Snake();
+      
+      window.addEventListener('click', () => mouseClicked(event));
+      window.addEventListener('keydown', () => snake.changeDir(event));
+      
+      title();
+      
+      
+      function title() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.textAlign = 'center';
+        
+        text('Lets Play', '50px', '#444', 100);
+        text('SNAKE', 'bold 75px', 'dodgerblue', 170);
+        text('Ready?', '30px', '#444', 250);
+        text(`Highscore: ${highScore}`, 'bold 30px', '#444', 287);
+        
+        ctx.fillStyle = 'dodgerblue';
+        ctx.fillRect(width/2 - 75, 340, 150, 60);
+        text('Lets Go!', '30px', '#e5e5e5', 380);
+        
+        text('(Click Me ^)', '18px', '#f20a', 430);
+      }
+      
+      function loop() {
+        timesincePageLoad++;
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        ctx.lineWidth = 2;
+        
+        ctx.fillStyle = '#f20a';
+        apple.show();
+        
+        
+        ctx.fillStyle = 'dodgerblue';
+        ctx.strokeStyle = '#e5e5e5';
+        snake.move();
+        snake.eat();
+      
+        for(let i = snake.tail.length - 1; i >= 0; i--) {
+          let seg = snake.tail[i];
+          
+          ctx.beginPath();
+          ctx.rect(seg.x, seg.y, tilePixelSideLength, tilePixelSideLength);
+          ctx.fill();
+          ctx.stroke();
+          ctx.closePath();
+      
+        if(timeSincePageLoad % framesBetweenMovements == 0) {
+            if(i === 0) {
+              seg.x = snake.x;
+              seg.y = snake.y;
+            } else {
+              seg.x = snake.tail[i - 1].x;
+              seg.y = snake.tail[i - 1].y;
+              
+              if(seg.x == snake.x && seg.y == snake.y) {
+                GAMESTATE = 'over';
+              }
+            }
+            
+            if(seg.x == apple.x && seg.y == apple.y) apple.pickLocation();
+          }
+        }
+        
+        snake.show();
+        text(`Score:${score}`, 'bold 25px', '#444', 30, 15);
+        text(`High Score:${highScore}`, 'bold 25px', '#444', 30, width - 210);
+        
+        if(score >= highScore) highScore = score;
+        
+        if(GAMESTATE == 'running') {
+          window.requestAnimationFrame(loop);
+        } else {
+          gameIsOver();
+        };
+      }
+      
+      function gameIsOver() {
+        ctx.fillStyle = '#e5e5e5aa';
+        ctx.fillRect(0, 0, width, height);
+        
+        ctx.textAlign = 'center';
+        
+        text('GAMEOVER', 'bold 75px', '#444', 100);
+        text('Your Score:', '30px', '#444', 160);
+        text(score, 'bold 50px', 'dodgerblue', 220);
+        text('Great Job! Wanna Play Again?', '30px', '#444', 280);
+      
+      
+        ctx.fillStyle = 'dodgerblue';
+        ctx.fillRect(width/2 - 75, 340, 150, 60);
+        text('Again!', '30px', '#e5e5e5', 380);
+        
+        ctx.fillStyle = '#f20a';
+        ctx.fillRect(width/2 - 75, 420, 150, 60);
+        text('To Title', '30px', '#e5e5e5', 460);
+      }
+      
+      function text(message, fontSize, color, y, x = width/2) {
+        ctx.fillStyle = color;
+        
+        ctx.font = `${fontSize} mono`;
+        ctx.fillText(message, x, y);
+      }
+      
+      function mouseClicked(event) {
+        let mouseX = Math.round(event.clientX - bounds.left);
+        let mouseY = Math.round(event.clientY - bounds.top);
+      
+        if(GAMESTATE == 'over' || GAMESTATE == 'title') {
+          if(mouseX >= width/2 - 55 && mouseX <= width/2 + 95 && mouseY >= 360 && mouseY <= 420) {
+            GAMESTATE = 'running';
+            score = 0;
+            ctx.textAlign = 'start';
+            
+            apple = new Apple();
+            apple.pickLocation();
+            snake = new Snake(5, 5);
+            
+            loop();
+          } else if(GAMESTATE == 'over' && mouseX >= width/2 - 55 && mouseX <= width/2 + 95 && mouseY >= 440 && mouseY <= 500) {
+            GAMESTATE = 'title';
+            title();
+          }
+        }
+      }
+    </script><!--game code-->
+  </body>
+</html>

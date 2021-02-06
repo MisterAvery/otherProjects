@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sound</title>
+  </head>
+  <body>
+    <h1>Sound With anUdderlySmartCow</h1>
+    <button onclick="playSound()">Play Sound</button>
+    <button onclick="endSound()">End Sound</button>
+
+    <script type="text/javascript">
+      let oscillator, ctx;
+
+      function playSound() {
+        ctx = new(window.AudioContext || window.webkitAudioContext)();
+
+        oscillator = ctx.createOscillator();
+          oscillator.type = 'sine';
+          oscillator.frequency.value = 150;
+          oscillator.connect(ctx.destination);
+          oscillator.start();
+      }
+
+      function endSound() {
+        oscillator.stop();
+        oscillator.disconnect();
+      }
+    </script>
+  </body>
+</html>

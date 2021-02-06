@@ -1,0 +1,16 @@
+[
+  {
+    "name": "HTML",
+    "desc": "A markup based language used on the web"
+  },
+  
+  {
+    "name": "CSS",
+    "desc": "A styling language"
+  },
+  
+  {
+    "name": "JS",
+    "desc": "A scripting language for front and back end development"
+  }
+]
