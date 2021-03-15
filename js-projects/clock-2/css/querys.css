@@ -1,0 +1,29 @@
+@media screen and (max-width: 850px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  :root {
+    font-size: 13px;
+  }
+  
+  body {
+    flex-direction: column;
+  }
+  
+  .container {
+    width: 80%;
+    margin-bottom: 1em;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  .buttons {
+    flex-direction: row;
+    margin: 0;
+  }
+}

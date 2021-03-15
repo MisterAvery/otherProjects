@@ -1,0 +1,61 @@
+:root {
+  --bg: #3e424b;
+
+  --containerBg: #676b6e;
+  --containerColor: white;
+
+  --h1Color: lime;
+  
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  padding: 1.5rem;
+  width: 53%;
+  background: var(--containerBg);
+  color: var(--containerColor);
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  border: 1rem solid #222;
+  z-index: 5;
+  transition: width 0.3s, height 0.3s;
+}
+
+h1 {
+  color: var(--h1Color);
+  font-size: 3.8rem;
+  font-family: 'Press Start 2P', cursive;
+  margin: 2.5rem 0;
+}
+
+.small {
+  font-family: 'Comfortaa', 'Sans-Serif';
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--containerColor);
+}
