@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300" rel="stylesheet">
+    
+    <title>Clock | glitchedGoose()</title>
+    <link href="./css/main.css" type="text/css" rel="stylesheet">
+    <link href="./css/buttons.css" type="text/css" rel="stylesheet">
+    <link href="./css/querys.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <canvas width="500" height="500"></canvas>
+    <div class="container">
+      <h2 class="small">The Current Time is:</h2>
+      <h1>00:00 XX</h1>
+      <h3 class="small">You are Welcome</h3>
+    </div>
+    <div class="buttons">
+      <h2 class="small" style="font-size: 18px;">Dark Mode:</h2>
+      <label class="switch">
+        <input type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+      
+      <h2 class="small" style="font-size: 18px;">24 hour clock:</h2>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      
+      <h2 class="small" style="font-size: 18px;">Scribbles:</h2>
+      <label class="switch">
+        <input type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+    
+    <script src="./scripts/clock.js"></script>
+    <script src="./scripts/ball.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
