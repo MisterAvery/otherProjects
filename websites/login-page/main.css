@@ -1,0 +1,98 @@
+:root {
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #113;
+}
+
+body {
+  background: linear-gradient(135deg, #f3f3f3, #bebec2);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  position: relative;
+  font-size: 2.5rem;
+  margin-bottom: 1.8rem;
+}
+
+h1::after {
+  content: '';
+  background: #f33a;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  height: 0.2em;
+  width: 40%;
+  box-shadow: 1px 1px 0 1px #f33e;
+}
+
+p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #888;
+  line-height: 1.5em;
+}
+
+a {
+  color: blue;
+}
+
+.box {
+  padding: 3rem 1.5rem;
+  width: 35%;
+  min-width: 400px;
+  height: 30rem;
+  background: white;
+  border-right: 8px solid #999;
+  border-bottom: 8px solid #555;
+}
+
+form {
+  margin: 2rem 0;
+  margin-left: 1.5rem;
+}
+
+form input {
+  display: block;
+  margin: 1.2em 0;
+  padding: 0.7em 1em;
+}
+
+.text-input {
+  font-size: 0.95rem;
+  width: 85%;
+  outline: none;
+  border: 1px solid #222;
+  transition: box-shadow 200ms, transform 200ms;
+}
+
+.text-input:focus {
+  border: 2px solid dodgerblue;
+}
+
+.submit {
+  padding: 0.3em 2.1em;
+  background: #29f;
+  color: white;
+  font-size: 1.1rem;
+  outline: none;
+  border: none;
+  border-right: 4px solid #27c;
+  border-bottom: 4px solid #06d;
+  transition: box-shadow 200ms, transform 200ms;
+}
+
+.submit:hover, .submit:focus {
+  border: none;
+  transform: translate(3px, 3px);
+}
