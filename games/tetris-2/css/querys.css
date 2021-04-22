@@ -1,0 +1,35 @@
+@media screen and (max-width: 890px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+/* @media screen and (max-width: 740px) {
+  :root {
+    font-size: 12px;
+  }
+} */
+
+@media screen and (max-width: 630px) {
+  :root {
+    font-size: 10px;
+  }
+}
+
+/* @media screen and (max-width: 580px) {
+  :root {
+    font-size: 9px;
+  }
+} */
+
+@media screen and (max-width: 530px) {
+  :root {
+    font-size: 7px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  :root {
+    font-size: 6px;
+  }
+}
