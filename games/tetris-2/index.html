@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/slider.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/querys.css">
+    <title>Tetris 2 | glitchedGoose()</title>
+  </head>
+  <body>
+    <div class="con">
+      <section>
+        <h1>High Score:</h1>
+        <p class="highScore">0</p>
+
+        <h1>Record Lines:</h1>
+        <p class="recordLines">0</p>
+
+        <h1>Record Level:</h1>
+        <p class="recordLevel">0</p>
+      </section>
+
+
+      <canvas class=".game-canvas" width="300" height="600" style="display: none;"></canvas>
+
+      <div class="menu">
+        <div class="controls">
+          <button class="back" onclick="toggleControls()">Back</button>
+          <h2><span>Move Left:</span> left arrow</h2>
+          <h2><span>Move Right:</span> right arrow</h2>
+          <h2><span>Drop Peice:</span> down arrow</h2>
+          <h2><span>Rotate Peice:</span> up arrow</h2>
+        </div>
+
+        <div class="home">
+          <h1>Let's Play Tetris</h1>
+          <div style="margin-top: 2.5em;">
+            <p style="margin-bottom: 0;">A Recreation By</p>
+            <p style="margin-top: 0.2em;">glitchedGoose()</p>
+          </div>
+
+          <button onclick="startGame()" style="background: pink; font-size: 1.6rem;">Start</button>
+          <button onclick="toggleSettings()">Settings<br/>-></button>
+          <button onclick="toggleControls()">Controls<br/><-</button>
+        </div>
+
+        <div class="settings">
+          <button class="back" onclick="toggleSettings()">Back</button>
+
+          <label class="switch" style="--text: 'Music:';">
+            <input class="inputBox" type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+
+          <label class="switch" style="--text: 'Grid:';">
+            <input class="inputBox" type="checkbox">
+            <span class="slider"></span>
+          </label>
+
+          <label for="slider" id="slider-label">Piece Size:</label>
+          <input type="range" id="slider" min="1" max="6" value="4">
+        </div>
+      </div>
+
+      <section>
+        <h1>Your Score:</h1>
+        <p class="playerScore">0</p>
+
+        <h1>Total Lines:</h1>
+        <p class="playerLines">0</p>
+
+        <h1>Your level:</h1>
+        <p style="margin-bottom: 0.2em;" class="playerLevel">0</p>
+
+        <canvas width="120" height="120" class="next-piece-canvas"></canvas>
+      </section>
+    </div>
+
+    <script src="./scripts/globals.js" charset="utf-8"></script>
+    <script src="./scripts/player.js" charset="utf-8"></script>
+    <script src="./scripts/controller.js" charset="utf-8"></script>
+    <script src="./scripts/main.js" charset="utf-8"></script>
+    <script src="./scripts/menu.js" charset="utf-8"></script>
+  </body>
+</html>
