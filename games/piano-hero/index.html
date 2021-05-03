@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <title>Piano Hero | glithedGoose()</title>
+    <style>
+      body {
+        background: #e8e8e8;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .game {position: relative;}
+      
+      canvas {
+        background: #f7f7f7;
+        border: 5px solid #444;
+      }
+      
+      button, .slider-con, .check-con {
+        display: none;
+        position: absolute;
+        left: 50%;
+        font-family: "VT323", mono;
+        font-size: 20px;
+        font-weight: bold;
+        transform: translate(-50%, -50%);
+      }
+      
+      button {
+        padding: 0.6em 1.25em;
+        top: 57%;
+        transition: transform 90ms;
+      }
+      
+      button:hover {
+        transform: scale(1.07) translate(-50%, -50%) rotate(6deg);
+      }
+      
+      .slider-con  {
+        text-align: center;
+      }
+      
+      .check-con {
+        top: 31.5%;
+      }
+      
+      label {letter-spacing: 1px;}
+    </style>
+  </head>
+  <body>
+    <div class="game">
+      <canvas width="400" height="550"></canvas>
+      <button onclick="restart()">Restart</button>
+      <div class="check-con">
+        <label for="checkbox">Bot-Enabled: </label>
+        <input id="checkbox" type="checkbox">
+      </div>
+      <div class="slider-con" style="top: 39%;">
+        <label for="slider">Starting-Speed: </label>
+        <input id="speedSlider" type="range" min="0.5" max="10" step="0.5" value="2">
+      </div>
+      <div class="slider-con" style="top: 47%;">
+        <label for="slider">Difficulty: </label>
+        <input id="difficultySlider" type="range" min="1" max="5" step="1">
+      </div>
+    </div>
+    
+    <script>alert('Use A, S, D, F, and G for controls')</script>
+    <script src="./scripts/globals.js"></script>
+    <script src="./scripts/controller.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
